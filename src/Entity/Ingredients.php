@@ -31,6 +31,12 @@ class Ingredients
      */
     private $Unity;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Unite")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Unite;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +74,18 @@ class Ingredients
     public function setUnity(string $Unity): self
     {
         $this->Unity = $Unity;
+
+        return $this;
+    }
+
+    public function getUnite(): ?Unite
+    {
+        return $this->Unite;
+    }
+
+    public function setUnite(?Unite $Unite): self
+    {
+        $this->Unite = $Unite;
 
         return $this;
     }
