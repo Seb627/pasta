@@ -1,0 +1,225 @@
+/*Nettoyage de la page*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  font-size: 1.6rem;
+}
+
+/* Definition de l'en-tête de page*/
+
+header img
+{
+    display: block;
+    width: 100%;
+}
+
+h1
+{
+    background-color: rgb(216, 63, 2);
+    color: white;
+    font-family: 'Bubbler One', sans-serif;
+    font-variant-caps: small-caps;  
+    font-size: 5rem;
+    color: white;
+    padding: 5vh;
+}
+
+
+/*Définition du menu*/
+nav
+{
+    display: flex;
+    flex-direction: row;
+}
+
+h2
+{
+    width: 15vw;
+    background: rgb(7, 128, 7);
+    font-family: 'Bubbler One', sans-serif;
+    color: white;
+    padding: 2vh;
+    text-align: center;
+}
+
+nav ul
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 85vw;
+    font-family: 'Bubbler One', sans-serif;
+    background-color: rgb(184, 174, 164); 
+}
+
+nav li
+{
+    display: block;
+    justify-content: space-around;
+    color: white;   
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+
+/*Organisation du contenu du bloc "recipe"*/
+.recipe h3
+{
+    font-family: 'Bubbler One', sans-serif;
+    font-size: 4.5rem;
+    font-weight: bold;
+}
+
+section
+{
+    background-color:  lightgray;
+}
+
+article
+{
+    background: white;
+    padding: 40px;
+    width: 80%;
+    box-shadow: 5px 5px 5px 5px gray;
+}
+
+.recipe__description
+{
+    margin-top: 5vh;
+} 
+
+article img /* redimensionnement des images des recettes*/
+{
+    display: block;
+    width: 300px;
+    height: 300px;
+    box-shadow: 5px 5px 5px 5px gray;
+}
+
+.recipe
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.recipe__resume
+{
+   margin-left: 3vw;
+   font-family: 'Bubbler One', sans-serif;
+   font-size: 2rem;
+   line-height: 6vh;
+}
+
+
+/*Definition de du bloc "method"*/
+
+.method
+{
+    display: flex;
+    flex-direction: row;
+}
+
+/*Définition du bloc "aside"*/
+aside
+{
+    background-color: rgb(7, 128, 7);
+    padding: 20px;
+    width: 15vw;
+    color: white;
+}
+
+aside li
+{
+    list-style-type: none;
+    text-indent: 3vh;
+    line-height: 5vh;
+    font-family: 'Bubbler One', sans-serif;
+    font-size: 2rem;
+}
+
+aside h4
+{
+    margin-bottom: 3vh;
+    margin-top: 4vh;
+    font-family: 'Bubbler One', sans-serif;
+    font-weight: bold;
+    font-variant-caps: small-caps;  
+    font-size: 1.8em;
+    color: blanchedalmond;
+    text-align: center;
+}
+
+/*Definition de du bloc "steps"*/
+
+.steps
+{
+    background: rgb(224, 224, 224);
+    padding: 5vw;
+    margin: 2vw;
+    box-shadow: 5px 5px 5px 5px gray;
+}
+
+.steps h4
+{
+    font-family: 'Bubbler One', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 7vh;
+}
+
+.steps li
+{
+    margin: 3vh;
+    font-family: 'Bubbler One', sans-serif;
+    font-size: 1.8rem;
+    line-height: 6vh;
+}
+
+.steps span
+{
+    font-weight: bold;
+}
+
+.steps p
+{
+    text-indent: 3vw;
+    margin-left: 2vw;
+}
+
+/*Définition de la plage de commentaires*/
+
+.comments
+{
+    padding: 5vw;
+    font-family: 'Bubbler One', sans-serif;
+    font-size: 4rem;
+}
+
+/*Définition du footer*/
+
+footer
+{
+    background-color: gray;
+    height: 10vh;
+}
+
+footer p
+{
+    padding-top: 5vh;
+    margin-left: 5vw;
+    font-family: 'Bubbler One', sans-serif;
+    color: white;
+    font-size: 2rem;
+}
