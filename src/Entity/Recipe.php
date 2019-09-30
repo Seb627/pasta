@@ -58,6 +58,11 @@ class Recipe
      */
     private $Ingredients;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Avis", inversedBy="recipes")
+     */
+    private $Avis;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -194,6 +199,18 @@ class Recipe
         if ($this->Ingredients->contains($ingredient)) {
             $this->Ingredients->removeElement($ingredient);
         }
+
+        return $this;
+    }
+
+    public function getAvis(): ?Avis
+    {
+        return $this->Avis;
+    }
+
+    public function setAvis(?Avis $Avis): self
+    {
+        $this->Avis = $Avis;
 
         return $this;
     }
