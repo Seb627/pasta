@@ -63,6 +63,11 @@ class Recipe
      */
     private $Steps;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Tag", cascade={"persist", "remove"})
+     */
+    private $Tag;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -201,6 +206,18 @@ class Recipe
                 $step->setRecipe(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTag(): ?Tag
+    {
+        return $this->Tag;
+    }
+
+    public function setTag(?Tag $Tag): self
+    {
+        $this->Tag = $Tag;
 
         return $this;
     }
