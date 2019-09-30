@@ -26,6 +26,11 @@ class Steps
      */
     private $Description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Recipe", inversedBy="Steps")
+     */
+    private $recipe;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class Steps
     public function setDescription(string $Description): self
     {
         $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getRecipe(): ?Recipe
+    {
+        return $this->recipe;
+    }
+
+    public function setRecipe(?Recipe $recipe): self
+    {
+        $this->recipe = $recipe;
 
         return $this;
     }

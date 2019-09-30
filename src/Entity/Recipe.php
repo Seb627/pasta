@@ -58,10 +58,16 @@ class Recipe
      */
     private $Ingredients;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Steps", mappedBy="recipe")
+     */
+    private $Steps;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
         $this->Ingredients = new ArrayCollection();
+        $this->Steps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -193,6 +199,37 @@ class Recipe
     {
         if ($this->Ingredients->contains($ingredient)) {
             $this->Ingredients->removeElement($ingredient);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Steps[]
+     */
+    public function getSteps(): Collection
+    {
+        return $this->Steps;
+    }
+
+    public function addStep(Steps $step): self
+    {
+        if (!$this->Steps->contains($step)) {
+            $this->Steps[] = $step;
+            $step->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStep(Steps $step): self
+    {
+        if ($this->Steps->contains($step)) {
+            $this->Steps->removeElement($step);
+            // set the owning side to null (unless already changed)
+            if ($step->getRecipe() === $this) {
+                $step->setRecipe(null);
+            }
         }
 
         return $this;
