@@ -53,9 +53,15 @@ class Recipe
      */
     private $recipes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Ingredients", inversedBy="recipes")
+     */
+    private $Ingredients;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
+        $this->Ingredients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,6 +167,32 @@ class Recipe
             if ($recipe->getUtensil() === $this) {
                 $recipe->setUtensil(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ingredients[]
+     */
+    public function getIngredients(): Collection
+    {
+        return $this->Ingredients;
+    }
+
+    public function addIngredient(Ingredients $ingredient): self
+    {
+        if (!$this->Ingredients->contains($ingredient)) {
+            $this->Ingredients[] = $ingredient;
+        }
+
+        return $this;
+    }
+
+    public function removeIngredient(Ingredients $ingredient): self
+    {
+        if ($this->Ingredients->contains($ingredient)) {
+            $this->Ingredients->removeElement($ingredient);
         }
 
         return $this;
