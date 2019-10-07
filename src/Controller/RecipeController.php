@@ -17,9 +17,4 @@ class RecipeController extends AbstractController
             'number' => $number,
         ]);
     }
-
-    public function index()
-    {
-        
-    }
 }
