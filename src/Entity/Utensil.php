@@ -47,4 +47,35 @@ class Utensil
 
         return $this;
     }
+
+    /**
+     * @return Collection|Recipe[]
+     */
+    public function getRecipe(): Collection
+    {
+        return $this->recipes;
+    }
+
+    public function addRecipe(Recipe $recipes): self
+    {
+        if (!$this->recipes->contains($recipes)) {
+            $this->recipes[] = $recipes;
+            $recipes->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecipe(Recipe $recipes): self
+    {
+        if ($this->Steps->contains($step)) {
+            $this->Steps->removeElement($step);
+            // set the owning side to null (unless already changed)
+            if ($recipes->getRecipe() === $this) {
+                $recipes->setRecipe(null);
+            }
+        }
+
+        return $this;
+    }
 }
