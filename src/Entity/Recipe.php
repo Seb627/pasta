@@ -44,14 +44,9 @@ class Recipe
     private $Price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Recipe", inversedBy="recipes")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Utensil", inversedBy="recipes")
      */
     private $Utensil;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Recipe", mappedBy="Utensil")
-     */
-    private $recipes;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Ingredients", inversedBy="recipes")
@@ -67,10 +62,16 @@ class Recipe
      * @ORM\OneToOne(targetEntity="App\Entity\Tag", cascade={"persist", "remove"})
      */
     private $Tag;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Avis", mappedBy="recipe")
+     */
+    private $avis;
 
     public function __construct()
     {
-        $this->recipes = new ArrayCollection();
+        $this->Utensil = new ArrayCollection();
+        $this->avis = new ArrayCollection();
         $this->Ingredients = new ArrayCollection();
         $this->Steps = new ArrayCollection();
     }
@@ -218,6 +219,69 @@ class Recipe
     public function setTag(?Tag $Tag): self
     {
         $this->Tag = $Tag;
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection|Avis[]
+     */
+    public function getAvis(): Collection
+    {
+        return $this->avis;
+    }
+
+    public function addAvis(Avis $avis): self
+    {
+        if (!$this->avis->contains($avis)) {
+            $this->avis[] = $avis;
+            $avis->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvis(Avis $avis): self
+    {
+        if ($this->avis->contains($avis)) {
+            $this->avis->removeElement($avis);
+            // set the owning side to null (unless already changed)
+            if ($avis->getRecipe() === $this) {
+                $avis->setRecipe(null);
+            }
+        }
+
+        return $this;
+    }
+
+     /**
+     * @return Collection|Utensil[]
+     */
+    public function getUtensil(): Collection
+    {
+        return $this->Utensil;
+    }
+
+    public function addUtensil(Utensil $Utensil): self
+    {
+        if (!$this->Utensil->contains($Utensil)) {
+            $this->Utensil[] = $Utensil;
+            $Utensil->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUtensil(Utensil $Utensil): self
+    {
+        if ($this->Utensil->contains($Utensil)) {
+            $this->Utensil->removeElement($Utensil);
+            // set the owning side to null (unless already changed)
+            if ($Utensil->getRecipe() === $this) {
+                $Utensil->setRecipe(null);
+            }
+        }
 
         return $this;
     }

@@ -21,6 +21,16 @@ class Utensil
      */
     private $Name;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Recipe", mappedBy="Utensil")
+     */
+    private $recipes;
+
+    public function __construct()
+    {
+        $this->recipes = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
